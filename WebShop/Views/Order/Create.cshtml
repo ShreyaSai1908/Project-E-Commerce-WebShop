@@ -1,0 +1,62 @@
+﻿@model OrderViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OrderDetails.OrderHeader.CustomerID" class="control-label"></label>
+                <input asp-for="OrderDetails.OrderHeader.CustomerID" class="form-control" />
+                <span asp-validation-for="OrderDetails.OrderHeader.CustomerID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetails.OrderHeader.CreateDate" class="control-label"></label>
+                <input asp-for="OrderDetails.OrderHeader.CreateDate" class="form-control" type="datetime-local" readonly />
+                <span asp-validation-for="OrderDetails.OrderHeader.CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetails.OrderHeader.OrderStatus" class="control-label"></label>
+                <input asp-for="OrderDetails.OrderHeader.OrderStatus" class="form-control" readonly />
+                <span asp-validation-for="OrderDetails.OrderHeader.OrderStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetails.OrderHeader.PaymentStatus" class="control-label"></label>
+                <input asp-for="OrderHeader.PaymentStatus" class="form-control" type="checkbox" readonly />
+                <span asp-validation-for="OrderDetails.OrderHeader.PaymentStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetails.Product.ProductID" class="control-label"></label>
+                <select asp-for="OrderDetails.Product.ProductID" class="form-control">
+                    @foreach (var item in Model.ProductList)
+                    {
+                        <option value="@item.ProductID">@item.ProductName - @item.Description</option>
+                    }
+                </select>
+                <span asp-validation-for="Product" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDetails.ProductQuantity" class="control-label"></label>
+                <input asp-for="OrderDetails.ProductQuantity" class="form-control" />
+                <span asp-validation-for="ProductQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ShowOrders">Back to List</a>
+</div>
+
+</body>
+</html>

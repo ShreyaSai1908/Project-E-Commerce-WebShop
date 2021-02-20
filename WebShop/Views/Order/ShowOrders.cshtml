@@ -1,0 +1,51 @@
+﻿@model OrderViewModel
+
+@{
+    ViewData["Title"] = "ShowOrders";
+}
+
+
+<body>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer ID</th>
+                <th>Order Status</th>
+                <th>Payment Status</th>
+                <th>Create Date</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderHeaderList)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.OrderID">Details</a> |
+                    <a asp-action="DeleteOrderHeader" asp-route-id="@item.OrderID">Delete</a> |
+                    <a asp-action="EditOrderHeader" asp-route-id="@item.OrderID">Edit</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</body>

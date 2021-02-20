@@ -1,0 +1,55 @@
+﻿@model OrderViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+<div>
+    @foreach (var item in Model.OrderDetailsList)
+    {
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Product
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => item.Product.ProductName)
+                </dd>
+                <dt class="col-sm-2">
+                    Description
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => item.Product.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    Price
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => item.Product.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    Qty
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => item.ProductQuantity)
+                </dd> 
+                <dt class="col-sm-2">
+
+                </dt>
+                <dd class="col-sm-10">
+                    <a asp-action="EditOrderDetail" asp-route-id="@item.OrderDetailID">Edit</a> |
+                    <a asp-action="DeleteOrderDetail" asp-route-id="@item.OrderDetailID">Delete</a>
+                </dd>
+            </dl>
+    }
+</div>
+<div>
+    <a asp-action="ShowOrders">Back to Orders</a>
+</div>
+    
+</body>
+</html>

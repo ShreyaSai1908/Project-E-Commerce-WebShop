@@ -1,0 +1,41 @@
+﻿@model OrderViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>      
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditOrderHeader">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="OrderHeader.OrderStatus" class="control-label"></label>
+                    <input asp-for="OrderHeader.OrderStatus" class="form-control" />
+                    <span asp-validation-for="OrderHeader.OrderStatus" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OrderHeader.PaymentStatus" class="control-label"></label>
+                    <input asp-for="OrderHeader.PaymentStatus" class="form-control" />
+                    <span asp-validation-for="OrderHeader.PaymentStatus" class="text-danger"></span>
+                </div>                
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+                <input asp-for="OrderHeader.OrderID" class="form-control" type="hidden" />
+            </form>
+         </div>
+    </div>
+
+    <div>
+        <a asp-action="ShowOrders">Back to Orders</a>
+    </div>
+
+</body>
+</html>
