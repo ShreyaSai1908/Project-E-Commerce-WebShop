@@ -23,6 +23,5 @@ namespace WebShop.Models.ViewModel
         public string Description { get; set; }
 
         public List<Product> ProductList { get; set; }
-
     }
 }

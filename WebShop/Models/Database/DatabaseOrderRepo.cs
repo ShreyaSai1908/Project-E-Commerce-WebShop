@@ -16,12 +16,17 @@ namespace WebShop.Models.Database
             _webDbContext = webDbContext;
         }
 
-        public OrderHeader Create(OrderHeader ordHdr, OrderDetails ordDet) 
+        public OrderHeader Create(OrderHeader ordHdr, List<OrderDetails> ordDetList) 
         {
             OrderHeader addingOrdHdr = ordHdr;
-            OrderDetails addingOrdDet = ordDet;
             _webDbContext.OrderHeader.Add(addingOrdHdr);
-            _webDbContext.OrderDetails.Add(addingOrdDet);            
+
+            foreach (OrderDetails addingOrdDet in ordDetList)
+            {
+                _webDbContext.Attach(addingOrdDet.Product);
+                _webDbContext.OrderDetails.Add(addingOrdDet);
+            }
+
             _webDbContext.SaveChanges();
             return addingOrdHdr;
         }

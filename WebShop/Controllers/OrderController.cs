@@ -81,7 +81,6 @@ namespace WebShop.Controllers
             return RedirectToAction(nameof(ShowOrders));
         }
 
-
         public IActionResult DeleteOrderHeader(int id)
         {
             _orderService.Remove(id);

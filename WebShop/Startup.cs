@@ -27,7 +27,16 @@ namespace WebShop
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {           
+        {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(600);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddDbContext<WebDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -38,7 +47,7 @@ namespace WebShop
             services.AddScoped<IOrderRepo, DatabaseOrderRepo>(); //Container setting for IoC
 
             services.AddControllersWithViews();
-            services.AddMvc();
+            services.AddMvc(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +63,9 @@ namespace WebShop
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSession();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -65,7 +77,7 @@ namespace WebShop
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Product}/{action=ShowProduct}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

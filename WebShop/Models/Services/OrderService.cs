@@ -22,10 +22,10 @@ namespace WebShop.Models.Services
             OrderHeader newOrdHdr = new OrderHeader();
             newOrdHdr = odvm.OrderHeader;
 
-            OrderDetails newOrdDet = new OrderDetails();
-            newOrdDet = odvm.OrderDetails;
+            List<OrderDetails> newOrdDetList = new List<OrderDetails>();
+            newOrdDetList = odvm.OrderDetailsList;
 
-            _orderRepo.Create(newOrdHdr, newOrdDet);
+            _orderRepo.Create(newOrdHdr, newOrdDetList);
             return odvm;
         }
         public OrderViewModel All()

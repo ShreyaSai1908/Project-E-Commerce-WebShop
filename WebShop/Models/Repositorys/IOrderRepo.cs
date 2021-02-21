@@ -7,7 +7,7 @@ namespace WebShop.Models.Repositorys
 {
     public interface IOrderRepo
     {
-        public OrderHeader Create(OrderHeader ordHdr, OrderDetails ordDet);
+        public OrderHeader Create(OrderHeader ordHdr, List<OrderDetails> ordDetList);
         public OrderHeader ReadOrderHeader(int id);
         public List<OrderHeader> ReadAllOrders();
         public List<OrderDetails> ReadOrderDetails(int id);

@@ -1,0 +1,51 @@
+﻿@model ShoppingCartViewModel
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml"; ;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrderSummary</title>
+</head>
+<body>
+
+    <div>
+        @if (Model.ShoppingCart != null && Model.ShoppingCart.Count>0)
+        {
+            foreach (var cart in Model.ShoppingCart)
+            {
+                var imgSrc = "/img/" + cart.Product.ProductName + ".png";
+                <div class="row">
+                    <div class="card col-sm-2" style="width: 18rem;">                        
+                      <img class="card-img-top rounded mx-auto d-block" src=@imgSrc alt="Card image cap" height="100" width="40" />                        
+                    </div>                   
+                    <div class="card-body col-sm-10">
+                        <h5 class="card-title">@cart.Product.ProductName</h5>
+                        <p class="card-text">@cart.Product.Description</p>
+                        <p class="card-text">@cart.Product.Price:-</p>
+                        <p class="card-text">Qty:@cart.ProductQty</p>
+                    </div>
+                </div>   
+                <br/>
+            }
+        }
+        else
+        {
+            <h3>No product(s) in your cart!</h3>
+        }
+    </div>
+<br />
+<div class="row">
+    <div class="col-sm-2">
+        <a asp-action="Index">Continue Shopping</a>
+    </div>
+    <div class="col-sm-2">
+        <a class="btn btn-primary" asp-action="PlaceOrder">Place Order</a>
+    </div>    
+</div>
+</body>
+</html>
