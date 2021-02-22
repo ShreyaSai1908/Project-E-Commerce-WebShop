@@ -8,12 +8,14 @@ using WebShop.Models.Services;
 using WebShop.Models.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
+using WebShop.Models.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebShop.Controllers
 {
     public class HomeController : Controller
-    {
-        
+    {        
         private IProductService _productService;
         private IOrderService _orderService;
         private const string KEY_SHOPPINGCART = "SHOPPINGCART";
@@ -25,7 +27,7 @@ namespace WebShop.Controllers
         public HomeController(IProductService productService, IOrderService orderService)
         {
             _productService = productService;
-            _orderService= orderService;
+            _orderService = orderService;
         }
 
         public IActionResult Index()

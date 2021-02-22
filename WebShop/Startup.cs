@@ -13,6 +13,8 @@ using WebShop.Models.Database;
 using Microsoft.EntityFrameworkCore;
 using WebShop.Models.Services;
 using WebShop.Models.Repositorys;
+using Microsoft.AspNetCore.Identity;
+using WebShop.Models.Identity;
 
 namespace WebShop
 {
@@ -28,6 +30,9 @@ namespace WebShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<UserIdentity, IdentityRole>()
+            .AddEntityFrameworkStores<WebDbContext>()
+            .AddDefaultTokenProviders();
             services.AddDistributedMemoryCache();
 
             services.AddSession(options =>
@@ -37,7 +42,7 @@ namespace WebShop
                 options.Cookie.IsEssential = true;
             });
 
-            services.AddDbContext<WebDbContext>(options => 
+            services.AddDbContext<WebDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             /*Product Service*/
@@ -71,8 +76,9 @@ namespace WebShop
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
+            app.UseAuthentication(); //User login??
+            app.UseAuthorization(); //User role??
+                       
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

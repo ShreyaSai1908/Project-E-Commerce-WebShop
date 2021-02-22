@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Models;
 using WebShop.Models.Services;
@@ -9,6 +10,8 @@ using WebShop.Models.ViewModel;
 
 namespace WebShop.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class OrderController : Controller
     {
         private IProductService _productService;
