@@ -1,4 +1,4 @@
-# Project-E-Commerce-WebShop
+# About This Project
 The project is creating a web shop.
 The web shop´s shopping cart and the views are created, displaying all the products, it took place in a
 single page, without reloading (using Axios through React). The user is able to login and
