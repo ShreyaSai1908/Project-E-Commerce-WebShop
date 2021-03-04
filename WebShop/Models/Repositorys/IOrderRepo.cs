@@ -9,6 +9,7 @@ namespace WebShop.Models.Repositorys
     {
         public OrderHeader Create(OrderHeader ordHdr, List<OrderDetails> ordDetList);
         public OrderHeader ReadOrderHeader(int id);
+        public List<OrderHeader> ReadAllCustOrders(string customerID);
         public List<OrderHeader> ReadAllOrders();
         public List<OrderDetails> ReadOrderDetails(int id);
         public OrderDetails ReadOrderDetailLine(int id);

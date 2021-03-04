@@ -42,6 +42,13 @@ namespace WebShop.Models.Services
             return ordHdr;
         }
 
+        public List<OrderHeader> ReadAllCustOrderHeader(string customerID)
+        {
+            List<OrderHeader> ordHdrList = new List<OrderHeader>();
+            ordHdrList = _orderRepo.ReadAllCustOrders(customerID);
+            return ordHdrList;
+        }
+
         public List<OrderDetails> ReadOrderDetails(int id)
         {
             List<OrderDetails> orderDetailsList = new List<OrderDetails>();

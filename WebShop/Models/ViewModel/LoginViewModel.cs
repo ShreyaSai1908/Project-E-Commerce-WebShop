@@ -16,5 +16,6 @@ namespace WebShop.Models.ViewModel
         [StringLength(30, MinimumLength = 6, ErrorMessage = "Password must be 6 long contain atleast 1 uppercase letter, a lowercase letter, a digit & a symbol.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public string CustomerID { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace WebShop.Models.Database
             _webDbContext = webDbContext;
         }
 
-        public OrderHeader Create(OrderHeader ordHdr, List<OrderDetails> ordDetList) 
+        public OrderHeader Create(OrderHeader ordHdr, List<OrderDetails> ordDetList)
         {
             OrderHeader addingOrdHdr = ordHdr;
             _webDbContext.OrderHeader.Add(addingOrdHdr);
@@ -30,7 +30,7 @@ namespace WebShop.Models.Database
             _webDbContext.SaveChanges();
             return addingOrdHdr;
         }
-        public OrderHeader ReadOrderHeader(int id) 
+        public OrderHeader ReadOrderHeader(int id)
         {
             return _webDbContext.OrderHeader.SingleOrDefault(w => w.OrderID == id);
         }
@@ -39,6 +39,10 @@ namespace WebShop.Models.Database
         {
             //return _webDbContext.OrderDetails.Include(x => x.OrderHeader).Include(y => y.Product).ToList();
             return _webDbContext.OrderHeader.ToList();
+        }
+        public List<OrderHeader> ReadAllCustOrders(string customerID)
+        {
+            return _webDbContext.OrderHeader.Where(w => w.CustomerID == customerID).ToList();
         }
         public List<OrderDetails> ReadOrderDetails(int id)
         {

@@ -10,6 +10,7 @@ namespace WebShop.Models.Services
     {
         public OrderViewModel Add(OrderViewModel odvm);
         public OrderViewModel All();
+        public List<OrderHeader> ReadAllCustOrderHeader(string customerID);
         public OrderHeader ReadOrderHeader(int id);
         public List<OrderDetails> ReadOrderDetails(int id);
         public OrderDetails ReadOrderDetailLine(int id);

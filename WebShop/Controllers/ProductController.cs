@@ -22,7 +22,6 @@ namespace WebShop.Controllers
 
         public ProductController(IProductService productService)
         {
-
             _productService = productService;
         }
 

@@ -9,14 +9,12 @@ namespace WebShop.Models.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepo _productRepo;
-               
+        private readonly IProductRepo _productRepo;               
 
         public ProductService(IProductRepo productRepo)
         {
             _productRepo = productRepo;            
         }
-
 
         public Product Add(ProductViewModel productView)
         {
@@ -36,9 +34,10 @@ namespace WebShop.Models.Services
             productViewModel.ProductList = _productRepo.Read();
             return productViewModel;
         }
+
         public Product FindBy(int findID)
         {
-            List<Product> allProducts = new List<Product>();
+             List<Product> allProducts = new List<Product>();
             allProducts = _productRepo.Read();
 
             Product searchProduct = new Product();
@@ -53,7 +52,6 @@ namespace WebShop.Models.Services
 
             return searchProduct;
         }
-
 
         public Product Edit(int id, Product product)
         {

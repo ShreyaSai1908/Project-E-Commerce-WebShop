@@ -52,7 +52,17 @@ namespace WebShop
             services.AddScoped<IOrderRepo, DatabaseOrderRepo>(); //Container setting for IoC
 
             services.AddControllersWithViews();
-            services.AddMvc(); 
+            services.AddMvc();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "MyAllowSpecificOrigins",
+                     builder =>
+                     {
+                         builder.WithOrigins("http://localhost:3000")//defualt uri for React (npm start)
+                                             .AllowAnyMethod()
+                                             .AllowAnyHeader();
+                     });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,7 +85,7 @@ namespace WebShop
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseCors("MyAllowSpecificOrigins");
             app.UseAuthentication(); //User login??
             app.UseAuthorization(); //User role??
                        
